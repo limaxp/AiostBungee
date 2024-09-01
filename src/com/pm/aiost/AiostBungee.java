@@ -58,14 +58,10 @@ public class AiostBungee extends Plugin {
 	}
 
 	private static void intDatabase() {
-		Logger.log("Initialize Database...");
-
 		if (DatabaseManager.initConnection_(BungeeConfigManager.getAiostConfig()))
 			DataAccess.init(new BungeeDatabaseAccess());
 		else
 			DataAccess.init(new BungeeFileAccess());
-
-		Logger.log("Database initialized!");
 	}
 
 	private void waitforUserInput() {
