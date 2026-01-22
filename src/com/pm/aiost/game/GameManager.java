@@ -14,7 +14,7 @@ import com.pm.aiost.server.ServerCache;
 import com.pm.aiost.server.ServerType;
 import com.pm.aiost.server.messaging.PluginMessage;
 
-import net.md_5.bungee.BungeeCord;
+import net.md_5.bungee.api.ProxyServer;
 
 public class GameManager {
 
@@ -22,7 +22,9 @@ public class GameManager {
 		int serverPlayerID = in.readInt();
 		ServerPlayer serverPlayer = ServerPlayer.getById(serverPlayerID);
 		Game game = new Game(UUID.fromString(in.readUTF()), in.readUTF(), in.readUTF(), in.readInt(), in.readInt(),
-				in.readInt(), in.readBoolean(), in.readInt(), in.readInt(), in.readUTF()); // TODO test if password is empty here if empty in spigot!
+				in.readInt(), in.readBoolean(), in.readInt(), in.readInt(), in.readUTF()); // TODO test if password is
+																							// empty here if empty in
+																							// spigot!
 		Server server = ServerCache.requestOpenServer(ServerType.GAME, game.getMaxPlayer());
 		if (server == null) {
 			serverPlayer.sendError("No free server found!");
@@ -37,7 +39,7 @@ public class GameManager {
 			game.addPlayer(serverPlayer);
 			GameCache.addGame(game);
 //			PluginMessage.send(server, startGameMessage(serverPlayer, game));
-			BungeeCord.getInstance().getScheduler().schedule(AiostBungee.getPlugin(),
+			ProxyServer.getInstance().getScheduler().schedule(AiostBungee.getPlugin(),
 					() -> PluginMessage.send(server, startGameMessage(serverPlayer, game)), 1, TimeUnit.SECONDS);
 			joinGameParty(serverPlayer, game);
 		});

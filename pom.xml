@@ -3,37 +3,91 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>aiost</groupId>
     <artifactId>AIOSTBungee</artifactId>
     <version>1.0</version>
+    
+    <properties>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+	</properties>
 
     <repositories>
         <repository>
             <id>bungeecord-repo</id>
             <url>https://oss.sonatype.org/content/repositories/snapshots</url>
         </repository>
+        <repository>
+			<id>repo</id>
+			<url>C:/Programming/Minecraft/aiost_workspace/AiostShared/target</url>
+		</repository>
     </repositories>
 
     <build>
+    	<sourceDirectory>src</sourceDirectory>
+		<testSourceDirectory>test</testSourceDirectory>
+		<resources>
+			<resource>
+				<directory>src</directory>
+				<excludes>
+					<exclude>**/*.java</exclude>
+				</excludes>
+			</resource>
+		</resources>
+    
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
+                <version>3.8.1</version>
                 <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                 </configuration>
             </plugin>
+            
+            <plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>2.4.3</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+						<configuration>
+							<artifactSet>
+								<includes>
+									<include></include>
+								</includes>
+							</artifactSet>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
         </plugins>
     </build>
 
     <dependencies>
+    <dependency>
+		<groupId>aiost</groupId>
+		<artifactId>AiostShared</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</dependency>
+		
+    	<!--
+		https://mvnrepository.com/artifact/org.eclipse.jdt/org.eclipse.jdt.annotation -->
+		<dependency>
+			<groupId>org.eclipse.jdt</groupId>
+			<artifactId>org.eclipse.jdt.annotation</artifactId>
+			<version>2.2.700</version>
+		</dependency>
+    
         <dependency>
             <groupId>net.md-5</groupId>
             <artifactId>bungeecord-api</artifactId>
-            <version>1.7-SNAPSHOT</version>
+            <version>1.20-R0.2</version>
             <type>jar</type>
             <scope>provided</scope>
         </dependency>

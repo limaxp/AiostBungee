@@ -9,7 +9,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import com.pm.aiost.collection.list.PersistentArrayList;
 
-import net.md_5.bungee.BungeeCord;
+import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 
 public class PlayerCache {
@@ -74,14 +74,10 @@ public class PlayerCache {
 	}
 
 	public static ServerPlayer getPlayer(UUID uuid) {
-		return getPlayer(BungeeCord.getInstance().getPlayer(uuid));
-	}
-
-	public static ServerPlayer getPlayerPerOfflineUUID(UUID uuid) {
-		return getPlayer(BungeeCord.getInstance().getPlayerByOfflineUUID(uuid));
+		return getPlayer(ProxyServer.getInstance().getPlayer(uuid));
 	}
 
 	public static ServerPlayer getPlayer(String name) {
-		return getPlayer(BungeeCord.getInstance().getPlayer(name));
+		return getPlayer(ProxyServer.getInstance().getPlayer(name));
 	}
 }

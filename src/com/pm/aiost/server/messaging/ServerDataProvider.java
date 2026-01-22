@@ -7,15 +7,15 @@ import com.pm.aiost.game.GameCache;
 import com.pm.aiost.player.PlayerManager;
 import com.pm.aiost.server.ServerCache;
 
-import net.md_5.bungee.ServerConnection;
 import net.md_5.bungee.api.connection.Connection;
+import net.md_5.bungee.api.connection.Server;
 
 public class ServerDataProvider {
 
 	public static void requestData(Connection sender, ByteArrayDataInput in) {
-		if (!(sender instanceof ServerConnection))
+		if (!(sender instanceof Server))
 			return;
-		ServerConnection server = (ServerConnection) sender;
+		Server server = (Server) sender;
 		int serverSize = in.readInt();
 		int[] serverTypes = new int[serverSize];
 		for (int i = 0; i < serverSize; i++)

@@ -9,7 +9,6 @@ import com.google.common.io.ByteStreams;
 import com.pm.aiost.misc.BungeeConfigManager;
 import com.pm.aiost.server.messaging.PluginMessage;
 
-import net.md_5.bungee.BungeeCord;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.config.ServerInfo;
@@ -32,7 +31,7 @@ public class ServerLoader {
 				serverType = ServerType.NONE;
 			else
 				serverType = ServerType.getIgnoreCase(typeName);
-			initServer(BungeeCord.getInstance().getServerInfo(serverName), serverType);
+			initServer(PROXY_SERVER.getServerInfo(serverName), serverType);
 		}
 	}
 

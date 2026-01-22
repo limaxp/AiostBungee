@@ -6,7 +6,7 @@ import com.pm.aiost.game.GameManager;
 import com.pm.aiost.player.PlayerManager;
 import com.pm.aiost.player.ServerPlayer;
 
-import net.md_5.bungee.BungeeCord;
+import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.config.ServerInfo;
 import net.md_5.bungee.api.event.ServerConnectEvent;
 import net.md_5.bungee.api.event.ServerConnectEvent.Reason;
@@ -45,10 +45,10 @@ public class ServerManager {
 	}
 
 	public static ServerInfo getServerInfo(String name) {
-		return BungeeCord.getInstance().getServerInfo(name);
+		return ProxyServer.getInstance().getServerInfo(name);
 	}
 
 	public static Map<String, ServerInfo> getServerInfos() {
-		return BungeeCord.getInstance().getServers();
+		return ProxyServer.getInstance().getServers();
 	}
 }

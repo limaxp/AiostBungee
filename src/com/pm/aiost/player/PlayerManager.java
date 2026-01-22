@@ -12,7 +12,7 @@ import com.pm.aiost.misc.log.Logger;
 import com.pm.aiost.misc.rank.Ranks;
 import com.pm.aiost.server.messaging.PluginMessage;
 
-import net.md_5.bungee.BungeeCord;
+import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 
 public class PlayerManager {
@@ -53,18 +53,14 @@ public class PlayerManager {
 	}
 
 	public static ProxiedPlayer getProxiedPlayer(UUID uuid) {
-		return BungeeCord.getInstance().getPlayer(uuid);
-	}
-
-	public static ProxiedPlayer getProxiedPlayerPerOfflineUUID(UUID uuid) {
-		return BungeeCord.getInstance().getPlayerByOfflineUUID(uuid);
+		return ProxyServer.getInstance().getPlayer(uuid);
 	}
 
 	public static ProxiedPlayer getProxiedPlayer(String name) {
-		return BungeeCord.getInstance().getPlayer(name);
+		return ProxyServer.getInstance().getPlayer(name);
 	}
 
 	public static Collection<ProxiedPlayer> getProxiedPlayers() {
-		return BungeeCord.getInstance().getPlayers();
+		return ProxyServer.getInstance().getPlayers();
 	}
 }

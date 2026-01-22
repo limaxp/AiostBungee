@@ -132,10 +132,6 @@ public class ServerPlayer {
 		return PlayerCache.getPlayer(uuid);
 	}
 
-	public static ServerPlayer getByOfflineUUID(UUID uuid) {
-		return PlayerCache.getPlayerPerOfflineUUID(uuid);
-	}
-
 	public static ServerPlayer getByName(String name) {
 		return PlayerCache.getPlayer(name);
 	}

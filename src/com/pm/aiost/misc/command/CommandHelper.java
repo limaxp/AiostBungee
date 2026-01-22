@@ -7,9 +7,9 @@ import com.pm.aiost.player.ServerPlayer;
 
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;
+import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
-import net.md_5.bungee.command.ConsoleCommandSender;
 
 public class CommandHelper {
 
@@ -29,21 +29,21 @@ public class CommandHelper {
 	}
 
 	public static boolean isConsole(CommandSender sender) {
-		if (sender instanceof ConsoleCommandSender)
+		if (sender == ProxyServer.getInstance().getConsole())
 			return true;
 		sendError(sender, "This command can only be run by the console!");
 		return false;
 	}
 
 	public static boolean isPlayerOrConsole(CommandSender sender) {
-		if (sender instanceof ProxiedPlayer || sender instanceof ConsoleCommandSender)
+		if (sender instanceof ProxiedPlayer || sender == ProxyServer.getInstance().getConsole())
 			return true;
 		sendError(sender, "This command can be run by either players or the console!");
 		return false;
 	}
 
 	public static boolean hasGroup(CommandSender sender, String group) {
-		if (sender.getGroups().contains(group) || sender instanceof ConsoleCommandSender)
+		if (sender.getGroups().contains(group) || sender == ProxyServer.getInstance().getConsole())
 			return true;
 		sendError(sender, "You must be in group '" + group + "' to do that!");
 		return false;
@@ -53,7 +53,7 @@ public class CommandHelper {
 		if (sender instanceof ProxiedPlayer) {
 			if (ServerPlayer.getByPlayer((ProxiedPlayer) sender).getRank().hasRank(level))
 				return true;
-		} else if (sender instanceof ConsoleCommandSender)
+		} else if (sender == ProxyServer.getInstance().getConsole())
 			return true;
 		sendError(sender, "You must have rank level '" + level + "' to do that!");
 		return false;
@@ -63,7 +63,7 @@ public class CommandHelper {
 		if (sender instanceof ProxiedPlayer) {
 			if (ServerPlayer.getByPlayer((ProxiedPlayer) sender).getRank().hasRank(rank))
 				return true;
-		} else if (sender instanceof ConsoleCommandSender)
+		} else if (sender == ProxyServer.getInstance().getConsole())
 			return true;
 		sendError(sender, "You must have rank '" + rank.name + "' to do that!");
 		return false;
@@ -73,7 +73,7 @@ public class CommandHelper {
 		if (sender instanceof ProxiedPlayer) {
 			if (ServerPlayer.getByPlayer((ProxiedPlayer) sender).getRank().isAdmin())
 				return true;
-		} else if (sender instanceof ConsoleCommandSender)
+		} else if (sender == ProxyServer.getInstance().getConsole())
 			return true;
 		sendError(sender, "You must have admin permissions to do that!");
 		return false;

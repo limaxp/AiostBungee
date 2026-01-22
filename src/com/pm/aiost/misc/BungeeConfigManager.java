@@ -9,7 +9,7 @@ import com.pm.aiost.misc.resourcePack.ResourcePackBuilder;
 import com.pm.aiost.misc.utils.FileUtils;
 import com.pm.aiost.server.ServerBuilder;
 
-import net.md_5.bungee.BungeeCord;
+import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.config.Configuration;
 import net.md_5.bungee.config.ConfigurationProvider;
 import net.md_5.bungee.config.YamlConfiguration;
@@ -23,7 +23,7 @@ public class BungeeConfigManager extends ConfigManager {
 	private static Configuration aiostConfig;
 
 	static {
-		File pluginsFile = BungeeCord.getInstance().getPluginsFolder();
+		File pluginsFile = ProxyServer.getInstance().getPluginsFolder();
 		bungeeCordPath = pluginsFile.getAbsolutePath();
 		bungeeCordPath = bungeeCordPath.substring(0, bungeeCordPath.lastIndexOf(File.separator));
 		initAiostFolderPath(pluginsFile + File.separator + "aiost");

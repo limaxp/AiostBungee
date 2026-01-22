@@ -13,8 +13,8 @@ import com.pm.aiost.server.ServerBuilder;
 import com.pm.aiost.server.ServerLoader;
 import com.pm.aiost.server.ServerType;
 
-import net.md_5.bungee.BungeeCord;
 import net.md_5.bungee.api.CommandSender;
+import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.plugin.Command;
 
 public class ServerCommands {
@@ -30,7 +30,7 @@ public class ServerCommands {
 			if (hasArgSize(sender, args, 0)) {
 				if (isPlayerOrConsole(sender)) {
 					if (isAdmin(sender))
-						BungeeCord.getInstance().config.load();
+						ProxyServer.getInstance().getConfigurationAdapter().load();
 				}
 			}
 		}
@@ -47,7 +47,7 @@ public class ServerCommands {
 			if (hasArgSize(sender, args, 0)) {
 				if (isPlayerOrConsole(sender)) {
 					if (isAdmin(sender))
-						BungeeCord.getInstance().stop();
+						ProxyServer.getInstance().stop();
 				}
 			}
 		}
